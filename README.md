@@ -27,3 +27,10 @@ The trade-off is scope: it parses one interface at a time, not whole `.idl` docu
 ## Edge cases worth knowing
 
 Extended attributes like `[Exposed=Window]` are stripped from members before parsing, so they will not appear in the output. Generic types such as `sequence<long>` and `FrozenArray<Element>` are preserved intact because the tokenizer tracks angle-bracket depth. Block comments (`/* ... */`) are removed early so a type name mentioned inside a comment never leaks into the parsed members; line comments (`//`) are intentionally left alone because they are not part of the grammar this library targets.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
