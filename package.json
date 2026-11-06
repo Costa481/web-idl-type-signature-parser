@@ -1,6 +1,6 @@
 {
   "name": "web-idl-type-signature-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parses a Web IDL interface definition to retrieve its name, attributes, and method signatures.",
   "type": "module",
   "main": "src/index.js",
